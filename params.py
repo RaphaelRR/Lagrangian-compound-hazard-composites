@@ -4,8 +4,8 @@ valid_hours = [0,6,12,18] # Hours for which all data involved is available
 year_range = [1980,2019]  # Range of years for which all data involved is available [1980,2019] for winds, precip, etc. Start in 2004 for dust
 
 # Plotting and data storing parameters
-half_width = 20 # Halfwidth of the interpolation region
-res_factor = 8 # Factor for the resolution of interpolated data
+half_width = 20 # Halfwidth of the interpolation region, in degrees
+res_factor = 8 # Factor for the resolution of interpolated data (number of points per degree)
 coarse_factor = 4 # Factor for coarsening the data, either to smooth, or to block-average (Default is 4 for dynamical features)
 eff_factor = int(res_factor/coarse_factor)
 

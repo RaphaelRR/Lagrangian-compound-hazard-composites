@@ -408,7 +408,6 @@ def mc_make_var_time(df_select,n_seed):
     mc_var_time += off_day    
     return mc_var_time
 
-#----------------------printing version--------------------------------#
 
 """ n_samples is the number of monte carlo composites to produce"""
 def mc_composite_var(var_name,df_select,ds_mask,anom_flag,n_proc,prefix_dir,cluster_number):             
@@ -448,39 +447,7 @@ def mix_and_match(*bool_arrays,dens):
         mm_bool = np.logical_and(mm_bool[:,:,-eff_len:], bool_arrays[ii][:,:,-eff_len:])
     mm_comp = np.sum(mm_bool,axis=2)/dens
     return mm_comp
-#----------------------end printing version--------------------------------#
 
-# """ n_samples is the number of monte carlo composites to produce"""
-# def mc_composite_var(var_name,df_select,ds_mask,anom_flag,n_proc):             
-#     data=() # Initialize run tuple
-#     for aa in np.arange(0,pr.n_samples):
-#         data += ([aa,var_name,df_select,ds_mask,anom_flag],) # Append to tuple 
-#     a_pool = multiprocessing.Pool(n_proc) # Init. multiprocessing 
-#     tmp = a_pool.map(mc_single_composite_var, data) # Run multiprocessing  
-#     mc_var_comp = np.concatenate(tmp,axis=3) # Prepare output    
-#     return mc_var_comp
-
-
-
-# def mc_single_composite_var(data):    
-#     # Initialize data
-#     aa = data[0]
-#     var_name =  data[1]
-#     df_select =  data[2]
-#     ds_mask =  data[3]
-#     anom_flag =  data[4]
-#     # Make composite
-#     mc_var_time = mc_make_var_time(df_select,aa)        
-#     var_comp, placeholder = composite_var(var_name,df_select,mc_var_time,ds_mask,anom_flag)
-#     out_comp = np.expand_dims(var_comp, np.ndim(var_comp)) # Add a dimension for concatenation to MC composites
-#     return out_comp
-
-
-# def mix_and_match(bool_array_1,bool_array_2,point_density):
-#     bool_intersection = np.logical_and(bool_array_1, bool_array_2)
-#     if np.ndim(bool_array_1)==4: point_density = np.expand_dims(point_density,2)
-#     mm_comp = np.sum(bool_intersection,axis=2)/point_density
-#     return mm_comp
 
 
 def fdr_test(comp,mc_comp):    
